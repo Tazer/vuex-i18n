@@ -4,11 +4,13 @@
 */
 
 // define a simple vuex module to handle locale translations
-const i18nVuexModule =  {
-	state: {
-		locale: null,
-		fallback: null,
-		translations: {}
+const i18nVuexModule = {
+	state() {
+		return {
+			locale: null,
+			fallback: null,
+			translations: {}
+		};
 	},
 	mutations: {
 
@@ -39,7 +41,7 @@ const i18nVuexModule =  {
 				if (state.translations.__ob__) {
 					state.translations.__ob__.dep.notify();
 				}
-			} catch(ex) {}
+			} catch (ex) { }
 
 		},
 
@@ -57,7 +59,7 @@ const i18nVuexModule =  {
 				if (state.translations.__ob__) {
 					state.translations.__ob__.dep.notify();
 				}
-			} catch(ex) {}
+			} catch (ex) { }
 
 		},
 
@@ -162,14 +164,14 @@ const flattenTranslations = function flattenTranslations(translations) {
 				let itemType = typeof translations[i][index];
 
 				if (itemType !== 'string') {
-					console.warn('vuex-i18n:','currently only arrays of strings are fully supported', translations[i]);
+					console.warn('vuex-i18n:', 'currently only arrays of strings are fully supported', translations[i]);
 					break;
 				}
 			}
 
 			toReturn[i] = translations[i];
 
-		} else if (objType == 'object' && objType !== null) {
+		} else if (objType == 'object' && objType !== null) {
 
 			let flatObject = flattenTranslations(translations[i]);
 
